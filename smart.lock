@@ -6,7 +6,10 @@
       "spin": {},
       "accounts-ui-bootstrap-dropdown": {},
       "iron-router-progress": {},
-      "graviton": {}
+      "graviton": {
+        "git": "ssh://git@github.com/thredder/graviton.git",
+        "branch": "master"
+      }
     },
     "packages": {
       "iron-router": {
@@ -30,19 +33,19 @@
         "commit": "3f7900feb4bb70a1289b39a1fdcd1f438c0335b3"
       },
       "graviton": {
-        "git": "https://github.com/fractallian/graviton.git",
-        "tag": "v0.0.3",
-        "commit": "b1457f28b9ec982aa397edcb20ab1935105ca912"
+        "git": "ssh://git@github.com/thredder/graviton.git",
+        "branch": "master",
+        "commit": "39154dc6d2d5d1e5b9e4d521ace52258470e5bdc"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",
         "tag": "v0.2.2",
         "commit": "8bc53798fe5965669ae67c72f91829fcfdceabfd"
       },
-      "deep-diff": {
-        "git": "https://github.com/fractallian/meteor-deep-diff.git",
-        "tag": "v0.0.1",
-        "commit": "9ee042ec5923ccb4e59de5a3da83f46c97b6839d"
+      "async": {
+        "git": "https://github.com/peerlibrary/meteor-async.git",
+        "tag": "v0.2.9.3",
+        "commit": "e95ab2eadd39c78261db3f8ef96bcb9e0b36bd81"
       }
     }
   }

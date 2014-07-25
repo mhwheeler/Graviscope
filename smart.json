@@ -4,6 +4,8 @@
     "spin": {},
     "accounts-ui-bootstrap-dropdown": {},
     "iron-router-progress": {},
-    "graviton": {}
+    "graviton": {
+      "git": "ssh://git@github.com/thredder/graviton.git"
+    }
   }
 }
