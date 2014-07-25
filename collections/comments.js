@@ -1,4 +1,18 @@
-Comments = new Meteor.Collection('comments');
+CommentModel = Graviton.Model.extend({},{
+  author: function() {
+    return this.get('author');
+  },
+  body: function() {
+    return this.get('body');
+  },
+  submittedText: function() {
+    return new Date(this.attributes.submitted).toString();
+  }
+});
+
+Comments = Graviton.define('comments', {
+  modelCls: CommentModel
+});
 
 Meteor.methods({
   comment: function(commentAttributes) {
