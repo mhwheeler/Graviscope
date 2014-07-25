@@ -5,7 +5,8 @@
       "iron-router": {},
       "spin": {},
       "accounts-ui-bootstrap-dropdown": {},
-      "iron-router-progress": {}
+      "iron-router-progress": {},
+      "graviton": {}
     },
     "packages": {
       "iron-router": {
@@ -28,10 +29,20 @@
         "tag": "v0.3.1",
         "commit": "3f7900feb4bb70a1289b39a1fdcd1f438c0335b3"
       },
+      "graviton": {
+        "git": "https://github.com/fractallian/graviton.git",
+        "tag": "v0.0.3",
+        "commit": "b1457f28b9ec982aa397edcb20ab1935105ca912"
+      },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",
         "tag": "v0.2.2",
         "commit": "8bc53798fe5965669ae67c72f91829fcfdceabfd"
+      },
+      "deep-diff": {
+        "git": "https://github.com/fractallian/meteor-deep-diff.git",
+        "tag": "v0.0.1",
+        "commit": "9ee042ec5923ccb4e59de5a3da83f46c97b6839d"
       }
     }
   }
