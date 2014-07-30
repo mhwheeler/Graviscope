@@ -17,7 +17,11 @@ CommentModel = Graviton.Model.extend({
     return this.get('body');
   },
   submittedText: function() {
-    return new Date(this.attributes.submitted).toString();
+    return new Date(this.get('submitted')).toString();
+  },
+  postTitle: function() {
+    // this data is not part of the de-normalization, so this is the relational way to find this
+    return this.post().title();
   }
 });
 
