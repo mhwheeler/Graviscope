@@ -43,7 +43,7 @@ Meteor.methods({
     if (!post)
       throw new Meteor.Error(422, 'You must comment on a post');
     
-    comment = _.extend(_.pick(commentAttributes, 'postId', 'body'), {
+    var comment = _.extend(_.pick(commentAttributes, 'postId', 'body'), {
       userId: user._id,
       author: user.username,
       submitted: new Date().getTime()
@@ -53,7 +53,8 @@ Meteor.methods({
     Posts.update(comment.postId, {$inc: {commentsCount: 1}});
     
     // create the comment, save the id
-    comment._id = Comments.insert(comment);
+    comment = Comments.build().set(comment);
+    post.comments.add(comment);
     
     // now create a notification, informing the user that there's been a comment
     createCommentNotification(comment);
