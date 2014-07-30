@@ -2,23 +2,7 @@ var POST_HEIGHT = 80;
 var Positions = new Meteor.Collection(null);
 
 Template.postItem.helpers({
-  ownPost: function() {
-    return this.userId == Meteor.userId();
-  },
-  domain: function() {
-    var a = document.createElement('a');
-    a.href = this.url;
-    return a.hostname;
-  },
-  upvotedClass: function() {
-    var userId = Meteor.userId();
-    if (userId && !_.include(this.upvoters, userId)) {
-      return 'btn-primary upvotable';
-    } else {
-      return 'disabled';
-    }
-  },
-  attributes: function() {
+  divAttributes: function() {
     var post = _.extend({}, Positions.findOne({postId: this._id}), this);
     var newPosition = post._rank * POST_HEIGHT;
     var attributes = {};

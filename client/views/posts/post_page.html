@@ -2,7 +2,8 @@
   {{> postItem}}
   
   <ul class="comments">
-    {{#each comments}}
+    <!-- the scope here is the comment model, so this resolves to PostModel.comments().find() -->
+    {{#each comments.find}}
       {{> comment}}
     {{/each}}
   </ul>

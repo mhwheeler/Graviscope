@@ -1,4 +1,50 @@
-Posts = new Meteor.Collection('posts');
+PostModel = Graviton.Model.extend({
+  hasMany: {
+    comments: {
+      collection: 'comments',
+      foreignKey: 'postId'
+    }
+  }
+}, {
+  title: function() {
+    return this.get('title');
+  },
+  url: function() {
+    return this.get('url');
+  },
+  author: function() {
+    return this.get('author');
+  },
+  ownPost: function() {
+    return this.get('userId') == Meteor.userId();
+  },
+  votes: function() {
+    return this.get('votes');
+  },
+  commentsCount: function() {
+    return this.get('commentsCount');
+  },
+  domain: function() {
+    if (Meteor.isClient) {
+      var a = document.createElement('a');
+      a.href = this.get('url');
+      return a.hostname;
+    }
+  },
+  upvotedClass: function() {
+    var userId = Meteor.userId();
+    if (userId && this.get('upvoters') && !_.include(this.get('upvoters'), userId)) {
+      return 'btn-primary upvotable';
+    } else {
+      return 'disabled';
+    }
+  }
+});
+
+
+Posts = Graviton.define('posts', {
+  modelCls: PostModel
+});
 
 Posts.allow({
   update: ownsDocument,

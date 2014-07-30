@@ -1,4 +1,15 @@
-CommentModel = Graviton.Model.extend({},{
+CommentModel = Graviton.Model.extend({
+  belongsTo: {
+    user: {
+      collectionName: 'users',
+      field: 'userId'
+    },
+    post: {
+      collectionName: 'posts',
+      field: 'postId'
+    }
+  }
+}, {
   author: function() {
     return this.get('author');
   },
