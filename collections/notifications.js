@@ -1,13 +1,34 @@
-Notifications = new Meteor.Collection('notifications');
+NotificationModel = Graviton.Model.extend({
+  belongsTo: {
+    user: {
+      collectionName: 'users',
+      field: 'userId'
+    },
+    post: {
+      collectionName: 'posts',
+      field: 'postId'
+    }
+  }
+}, {
+  commenterName: function() {
+    return this.get('commenterName');
+  },
+  notificationPostPath: function() {
+    return Router.routes.postPage.path({_id: this.get('postId')});
+  },
+  markAsRead: function() {
+    this.update({$set: {read: true}});
+  }
+});
 
-Notifications.allow({
-  update: ownsDocument
+Notifications = Graviton.define('notifications', {
+  modelCls: NotificationModel
 });
 
 createCommentNotification = function(comment) {
   var post = comment.post();
   if (comment.get('userId') !== post.get('userId')) {
-    Notifications.insert({
+    Notifications.create({
       userId: post.get('userId'),
       postId: post._id,
       commentId: comment._id,
