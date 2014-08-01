@@ -2,11 +2,13 @@ PostModel = Graviton.Model.extend({
   hasMany: {
     comments: {
       collection: 'comments',
-      foreignKey: 'postId',
+      foreignKey: 'postId', // comment.postId
+      onRemove: 'cascade' //remove child comments when a post is removed
     },
     notifications: {
       collection: 'notifications',
-      foreignKey: 'postId'
+      foreignKey: 'postId', // notification.postId
+      onRemove: 'cascade' // remove child notifications when a post is removed
     }
   }
 }, {
