@@ -1,3 +1,17 @@
+/**
+ *
+ * Post Model:
+ *
+ * post hasMany comments
+ * there is a collection called 'comments' which has a key postId which references to it's owning post
+ * on removal of a post the child comments should be removed
+ *
+ * post hasMany notifications
+ * there is a collection called 'notifications' which has a key postId which references to it's owning post
+ * on removal of a post the child notifications should be removed
+ *
+ */
+
 PostModel = Graviton.Model.extend({
   hasMany: {
     comments: {
@@ -12,6 +26,8 @@ PostModel = Graviton.Model.extend({
     }
   }
 }, {
+
+  // simple get aliases
   title: function() {
     return this.get('title');
   },
@@ -21,15 +37,19 @@ PostModel = Graviton.Model.extend({
   author: function() {
     return this.get('author');
   },
-  ownPost: function() {
-    return this.get('userId') == Meteor.userId();
-  },
   votes: function() {
     return this.get('votes');
   },
   commentsCount: function() {
     return this.get('commentsCount');
   },
+
+  // other model helpers
+  ownPost: function() {
+    return this.get('userId') == Meteor.userId();
+  },
+
+  // client specific functions
   domain: function() {
     if (Meteor.isClient) {
       var a = document.createElement('a');
@@ -47,11 +67,12 @@ PostModel = Graviton.Model.extend({
   }
 });
 
-
+// Now that the model has been created, define the collection
 Posts = Graviton.define('posts', {
   modelCls: PostModel
 });
 
+// Allow/deny rules
 Posts.allow({
   update: ownsDocument,
   remove: ownsDocument
@@ -64,6 +85,7 @@ Posts.deny({
   }
 });
 
+// Meteor Methods related to this collection
 Meteor.methods({
   post: function(postAttributes) {
     var user = Meteor.user(),
@@ -92,7 +114,8 @@ Meteor.methods({
       commentsCount: 0,
       upvoters: [], votes: 0
     });
-    
+
+    //TODO: use model functions
     var postId = Posts.insert(post);
     
     return postId;
@@ -103,7 +126,8 @@ Meteor.methods({
     // ensure the user is logged in
     if (!user)
       throw new Meteor.Error(401, "You need to login to upvote");
-    
+
+    //TODO: use model functions
     Posts.update({
       _id: postId, 
       upvoters: {$ne: user._id}
