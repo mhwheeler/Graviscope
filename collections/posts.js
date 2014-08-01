@@ -2,6 +2,10 @@ PostModel = Graviton.Model.extend({
   hasMany: {
     comments: {
       collection: 'comments',
+      foreignKey: 'postId',
+    },
+    notifications: {
+      collection: 'notifications',
       foreignKey: 'postId'
     }
   }
