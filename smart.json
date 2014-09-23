@@ -1,11 +1,5 @@
 {
   "packages": {
-    "iron-router": {
-      "version": "0.8.2"
-    },
-    "spin": {},
-    "accounts-ui-bootstrap-dropdown": {},
-    "iron-router-progress": {},
     "graviton": {
       "git": "ssh://git@github.com/thredder/graviton.git"
     }
